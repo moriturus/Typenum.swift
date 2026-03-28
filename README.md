@@ -71,6 +71,17 @@ The package includes:
 
 As a consumer, you only need to depend on and import `Typenum`; the generated aliases and macros are surfaced through the library.
 
+## Real-World Examples
+
+Two annotated examples show how to apply `Typenum.swift` to realistic problems:
+
+- [Dimensioned units — type-safe physical quantities](docs/examples/dimensioned-units.md):
+  encode SI dimension exponents as type-level integers so that the compiler verifies unit correctness in arithmetic expressions.
+- [Generic array constraints — compile-time buffer sizing](docs/examples/generic-array-constraints.md):
+  use `TArr`-based type arrays and unsigned integer type parameters to enforce fixed-size and equal-length constraints without any runtime guard code.
+
+See [`docs/architecture.md`](docs/architecture.md) for a broader overview of the module layout and design decisions.
+
 ## Quick Example
 
 ```swift
