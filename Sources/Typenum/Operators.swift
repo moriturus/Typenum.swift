@@ -2,6 +2,13 @@
 ///
 /// Produces ``Less``, ``Equal``, or ``Greater`` depending on the
 /// runtime values of `LHS` and `RHS`.
+///
+/// > Note: **Normalization gap.** `Comparison<LHS, RHS>` is a distinct nominal
+/// > type for every operand pair and is not automatically unified with the
+/// > canonical result types ``Less``, ``Equal``, or ``Greater``.
+/// > For example, `Compare<U3, U2>` is *not* the same type as ``Greater``, even
+/// > though `Compare<U3, U2>.ordering == TypeOrdering.greater`.
+/// > Structural normalization is tracked as **SLICE-7** in `docs/architecture.md`.
 public struct Comparison<LHS: Integer, RHS: Integer>: ComparisonResult, Sendable {
     public init() {}
 
@@ -19,6 +26,14 @@ public struct Comparison<LHS: Integer, RHS: Integer>: ComparisonResult, Sendable
 /// Computes the type-level sum of two integers.
 ///
 /// Conforms to ``Unsigned`` when both operands are unsigned.
+///
+/// > Note: **Normalization gap.** `Addition<LHS, RHS>` is a distinct nominal
+/// > type and is not automatically reduced to the canonical representation of
+/// > the result value.  For example, `Sum<U3, U2>` is *not* the same type as
+/// > `U5`, even though `Sum<U3, U2>.intValue == 5`.  Algebraic identities such
+/// > as commutativity or associativity are therefore not expressible as type
+/// > constraints.  Structural normalization is tracked as **SLICE-1 / SLICE-2**
+/// > in `docs/architecture.md`.
 public struct Addition<LHS: Integer, RHS: Integer>: Signed, Sendable {
     public init() {}
 
@@ -28,6 +43,13 @@ public struct Addition<LHS: Integer, RHS: Integer>: Signed, Sendable {
 }
 
 /// Computes the type-level difference `LHS − RHS`.
+///
+/// > Note: **Normalization gap.** `Difference<LHS, RHS>` is a distinct nominal
+/// > type and is not automatically reduced to the canonical representation of
+/// > the result value.  For example, `Diff<U5, U3>` is *not* the same type as
+/// > `U2`, even though `Diff<U5, U3>.intValue == 2`.  Invariants such as
+/// > `Diff<A, A> == U0` are not expressible as type constraints.  Structural
+/// > normalization is tracked as **SLICE-3 / SLICE-4** in `docs/architecture.md`.
 public struct Difference<LHS: Integer, RHS: Integer>: Signed, Sendable {
     public init() {}
 
@@ -39,6 +61,15 @@ public struct Difference<LHS: Integer, RHS: Integer>: Signed, Sendable {
 /// Computes the type-level product of two integers.
 ///
 /// Conforms to ``Unsigned`` when both operands are unsigned.
+///
+/// > Note: **Normalization gap.** `Product<LHS, RHS>` is a distinct nominal
+/// > type and is not automatically reduced to the canonical representation of
+/// > the result value.  For example, `Prod<U2, U3>` is *not* the same type as
+/// > `U6`, even though `Prod<U2, U3>.intValue == 6`.  Algebraic identities such
+/// > as commutativity, distributivity, or the zero-annihilation law
+/// > `Prod<N, U0> == U0` are therefore not expressible as type constraints.
+/// > Structural normalization is tracked as **SLICE-5 / SLICE-6** in
+/// > `docs/architecture.md`.
 public struct Product<LHS: Integer, RHS: Integer>: Signed, Sendable {
     public init() {}
 

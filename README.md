@@ -202,6 +202,20 @@ let _ = Pow2Proof<U8>()
 
 It validates at runtime that `T` is a positive power of two. Generated proof-oriented scaffolding exists in the project, but the proof API surface is still intentionally small and should be considered immature.
 
+## Architecture And Normalization Roadmap
+
+Detailed architectural notes and the canonical type normalization roadmap for
+core operators (`Sum`, `Diff`, `Prod`, `Compare`) are maintained in
+[`docs/architecture.md`](docs/architecture.md).
+
+That document covers:
+
+- The current normalization gaps that prevent proof-style composition.
+- A staged migration plan (Stages 1–7) from runtime-backed wrappers toward
+  canonical type identities.
+- Public API implications and breaking-change boundaries.
+- Sequenced follow-up implementation slices (SLICE-1 through SLICE-9).
+
 ## Current Limitations
 
 - Many public wrappers project type-level values through `static var intValue: Int`

@@ -1,15 +1,35 @@
 // MARK: - Arithmetic aliases
 
 /// Alias for ``Comparison``.
+///
+/// `Compare<LHS, RHS>` currently resolves to the ``Comparison`` wrapper type
+/// and is *not* automatically unified with the canonical result types ``Less``,
+/// ``Equal``, or ``Greater``.  See `docs/architecture.md` **SLICE-7** for the
+/// planned structural normalization.
 public typealias Compare<LHS: Integer, RHS: Integer> =
     Comparison<LHS, RHS>
 /// Alias for ``Addition``.
+///
+/// `Sum<LHS, RHS>` currently resolves to the ``Addition`` wrapper type and is
+/// *not* automatically reduced to the canonical type-level integer that
+/// represents the computed value.  See `docs/architecture.md`
+/// **SLICE-1 / SLICE-2** for the planned structural normalization.
 public typealias Sum<LHS: Integer, RHS: Integer> =
     Addition<LHS, RHS>
 /// Alias for ``Difference``.
+///
+/// `Diff<LHS, RHS>` currently resolves to the ``Difference`` wrapper type and
+/// is *not* automatically reduced to the canonical type-level integer that
+/// represents the computed value.  See `docs/architecture.md`
+/// **SLICE-3 / SLICE-4** for the planned structural normalization.
 public typealias Diff<LHS: Integer, RHS: Integer> =
     Difference<LHS, RHS>
 /// Alias for ``Product``.
+///
+/// `Prod<LHS, RHS>` currently resolves to the ``Product`` wrapper type and is
+/// *not* automatically reduced to the canonical type-level integer that
+/// represents the computed value.  See `docs/architecture.md`
+/// **SLICE-5 / SLICE-6** for the planned structural normalization.
 public typealias Prod<LHS: Integer, RHS: Integer> =
     Product<LHS, RHS>
 /// Alias for ``Quotient``.
